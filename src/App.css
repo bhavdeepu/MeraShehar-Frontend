@@ -28,6 +28,21 @@
   color: #61dafb;
 }
 
+/*.box {
+  margin: 20px;
+}
+*/
+/*.grid {
+  min-height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.grid > div {
+  flex-basis: calc(50% - 40px);
+}
+*/
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
