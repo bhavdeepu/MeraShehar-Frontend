@@ -12,6 +12,7 @@ function ProductAddTab(props){
 
   const [token] = useCookies(['ms-token']);
 
+  const [price , setPrice] = useState('');
   const [nameCat , setNameCat] = useState('');
   const [descriptionCat , setDescriptionCat] = useState('')
   const [imageCat , setImageCat] = useState(null);
@@ -23,7 +24,7 @@ function ProductAddTab(props){
   const dispatch = useDispatch();
   useEffect (() =>{
     dispatch(fetchProductOptions('all=1'));    
-  },[])
+  },[dispatch])
 
 
   const saveNewProduct = () =>{
@@ -32,6 +33,8 @@ function ProductAddTab(props){
     uploadData.append('name', nameCat);
     uploadData.append('description', descriptionCat);
     uploadData.append('category', categoryId);
+    uploadData.append('price', price);
+
 
     if (imageCat) uploadData.append('image', imageCat);
 
@@ -48,9 +51,13 @@ function ProductAddTab(props){
                 <Form.Label>Product Name</Form.Label>
                 <Form.Control type="text" placeholder="Product Name" 
                       value={nameCat} onChange={ evt => setNameCat(evt.target.value)}/>
-                <Form.Text className="text">
-                  
-                </Form.Text>
+              </Form.Group>
+
+
+              <Form.Group controlId="formBasicEmail">
+                <Form.Label>Product Price</Form.Label>
+                <Form.Control type="float" placeholder="Product Price" 
+                      value={price} onChange={ evt => setPrice(evt.target.value)}/>
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">

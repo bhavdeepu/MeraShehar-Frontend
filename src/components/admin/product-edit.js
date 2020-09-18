@@ -14,13 +14,14 @@ function ProductEdit(props){
   const productId = props.match.params.id;
 
   const productsDetails = useSelector(store => store.productsDetails);
-  const {product, name, description, loading, error} = productsDetails; 
+  const {product, loading, error} = productsDetails; 
 
   const productsOption = useSelector(store => store.productsOption);
   const {options} = productsOption; 
   
-  const [nameCat , setNameCat] = useState(name);
-  const [descriptionCat , setDescriptionCat] = useState(description);
+  const [price , setPrice] = useState('');
+  const [nameCat , setNameCat] = useState('');
+  const [descriptionCat , setDescriptionCat] = useState('');
   const [categoryType , setcategoryType] = useState(null);
   
   const [categoryId , setcategoryId] = useState(null);
@@ -35,18 +36,24 @@ function ProductEdit(props){
   },[dispatch, productId])
 
   useEffect (() =>{
-      setNameCat(name);
-      setDescriptionCat(description);
+    if (product){
+      setPrice(product.price);
+      setNameCat(product.name);
+      setDescriptionCat(product.description);
+    }
       setcategoryType(options);
-  },[name,description, options])
+  },[product, options])
 
   const saveUpdatedCategory = () =>{
 
     const uploadData = new FormData();
     uploadData.append('name', nameCat);
     uploadData.append('description', descriptionCat);
-    uploadData.append('category', categoryId);
+    uploadData.append('price', price);
     
+    if (categoryId){
+    uploadData.append('category', categoryId);
+    }
     if (imageCat) uploadData.append('image', imageCat);
 
     APIALL.updateProduct(token['ms-token'], productId, uploadData)
@@ -83,6 +90,12 @@ function ProductEdit(props){
                 <Form.Text className="text">
                   
                 </Form.Text>
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Price</Form.Label>
+                <Form.Control type="float" placeholder="Price" 
+                    value={price} onChange={ evt => setPrice(evt.target.value)}/>
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">

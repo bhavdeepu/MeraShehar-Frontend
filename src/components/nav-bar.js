@@ -37,7 +37,7 @@ function NavBar(props){
               is_login?
               <React.Fragment>
                 <NavDropdown title={user.first_name} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
+                <NavDropdown.Item><Link to={'/profile'} style={{ color: 'inherit', textDecoration: 'inherit'}}>My Profile</Link></NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Orders</NavDropdown.Item>
                   {user['is_superuser']? 
                 <NavDropdown.Item><Link to={'/admin/categories'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Admin CP</Link></NavDropdown.Item>:
@@ -50,7 +50,7 @@ function NavBar(props){
                 
               </React.Fragment>
                 :
-                <Nav.Link href="/login">Login</Nav.Link> 
+                <Nav.Link href="/login">Login/Register</Nav.Link> 
             }
              
           </Navbar.Collapse>

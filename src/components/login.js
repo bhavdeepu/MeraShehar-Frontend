@@ -53,7 +53,7 @@ function Login(props){
 			  </Button>
 			  <br />
 			 <div className="text-center">
-			 <a href="/" >Sign up</a>
+			 <a href="/signup" >Sign up</a>
 			 <span className="p-2">|</span>
 			 <a href="/" >Forgot password</a>
 			 </div>

@@ -19,6 +19,21 @@ export class APIALL{
 		return API.post(`auth/`,body)
 		}
 
+	static signupUser(body){
+		return API.post(`users/`,body)
+		}
+	
+	static updateUser(token, id ,body){
+		return API.patch(`users/${id}/`,body,
+			{ 
+				headers: {
+					        'Content-Type':'multipart/form-data',
+					        'Authorization':`Token ${token}`
+					      }
+			}
+			)
+		}
+
 		// return fetch(`http://52.66.199.133/auth/`,{
 		// 		      method: "POST",
 		// 		      headers: {
@@ -97,6 +112,17 @@ export class APIALL{
 
 	static updateProductStatus(token, id, body){
 		return API.patch(`products/${id}/change-status/?all=1`,body,
+			{ 
+				headers: {
+					        'Content-Type':'application/json',
+					        'Authorization':`Token ${token}`
+					      }
+			}
+			)
+	}
+	
+	static updateProductFeature(token, id, body){
+		return API.patch(`products/${id}/change-featured/?all=1`,body,
 			{ 
 				headers: {
 					        'Content-Type':'application/json',

@@ -30,7 +30,12 @@ function ProductTab(props){
         .catch(error => console.log("error==",error))
       }
       
-
+    const featuredHandler=(cardnew)=>{
+        APIALL.updateProductFeature(token['ms-token'],cardnew.card.id,{is_featured: !cardnew.card.is_live})
+        .then(resp => dispatch(fetchProducts('all=1')))
+        .catch(error => console.log("error==",error))
+      }
+      
 	  const renderCard = (card, index) => {
       return (
         <Card style={{ width: '13rem' }} key={index}>
@@ -44,6 +49,11 @@ function ProductTab(props){
               <input type="checkbox" defaultChecked={card.is_live}
                 onClick={() => {if(window.confirm('Are you sure want to change?')){ liveHandler({card})}}}/>
               <label>Is Live</label>
+            </div>
+            <div className="custom-control custom-checkbox">
+              <input type="checkbox" defaultChecked={card.is_featured}
+                onClick={() => {if(window.confirm('Are you sure want to change?')){ featuredHandler({card})}}}/>
+              <label>Is Featured</label>
             </div>
 
             <br/>

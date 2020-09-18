@@ -1,21 +1,20 @@
 import React, {useEffect} from 'react';
 import { Button, Card} from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../services/actions/categoriesAction"
+import { fetchProducts } from "../services/actions/productsAction"
+import { Link } from "react-router-dom";
 
-function Categories(props){
 
-    const categoriesList = useSelector(store => store.categoriesList);
-    const {categories, loading, error} = categoriesList; 
+function Products(props){
+
+    const productsList = useSelector(store => store.productsList);
+    const {products, loading, error} = productsList;
 
     const dispatch = useDispatch();
-    useEffect (() =>{
-      dispatch(fetchCategories());
-    },[dispatch])
 
-    const showProducts = card => evt =>{
-      props.showProducts(card)
-    }
+    useEffect (() =>{
+      dispatch(fetchProducts(`cat=${props.catid}&futr=1`));
+    },[dispatch,props.catid])
 
 	  const renderCard = (card, index) => {
                 return (
@@ -26,7 +25,11 @@ function Categories(props){
                       <Card.Text>
                       {card.description}
                       </Card.Text>
-                      <Button variant="primary" onClick={showProducts(card)}>Show Products</Button>
+                      <Button variant="primary">
+                        <Link to={"/product/" + card.id+"/"} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        Open
+                          </Link>
+                      </Button>
                     </Card.Body>
                   </Card>
                   )
@@ -35,14 +38,16 @@ function Categories(props){
    
 	return loading ? <div>loading..</div> :
       error ? <div>error..{error}</div> :
-      categories ?
+      products ?
       <React.Fragment>
-        <h2>All Categories</h2>
+        <h2>{props.catname}</h2>
     		<div className="card-columns">
-              {categories.map(renderCard)}
+              {products.map(renderCard)}
           </div> 
       </React.Fragment>: <div>loading..</div>
+    		
+  
 }
 
 
-export default Categories;
+export default Products;
