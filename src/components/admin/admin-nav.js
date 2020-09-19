@@ -28,8 +28,9 @@ function AdminNavBar(props){
           
           <Navbar.Collapse className="justify-content-end">              
               <NavDropdown title={user.first_name} id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Orders</NavDropdown.Item>                  
+                  <NavDropdown.Item><Link to={'/profile'} style={{ color: 'inherit', textDecoration: 'inherit'}}>My Profile</Link></NavDropdown.Item>
+                  <NavDropdown.Item><Link to={'/cart'} style={{ color: 'inherit', textDecoration: 'inherit'}}>Order</Link></NavDropdown.Item>
+                  
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick = {logoutUser}>Logout</NavDropdown.Item>
               </NavDropdown>

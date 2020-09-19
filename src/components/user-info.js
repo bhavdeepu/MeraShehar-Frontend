@@ -1,7 +1,7 @@
 import React ,{useEffect, useState}from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from './nav-bar';
-import { Navbar, NavDropdown, Container, Row, Col, Image, Form, Button} from 'react-bootstrap';
+import { Container, Row, Col, Image, Form, Button} from 'react-bootstrap';
 import {APIALL} from '../api-service';
 import { useCookies} from 'react-cookie';
 import {USER_LIST_SUCCESS, USER_LIST_FAIL} from "../services/types";
@@ -55,11 +55,10 @@ function Profile(){
             <Row>
               <Col>
               <Image src={user.images} roundedCircle style={{width: "177px"}} /> <br/><br/>
-              First Name : {user.first_name} <br/>
-              Last Name : {user.last_name} <br/>
-              Email : {user.email} <br/>
-              mobile_no : {user.mobile_no} <br/>
-              
+              FIRST NAME : <h5>{user.first_name}</h5> <br/>
+              LAST NAME : <h5>{user.last_name}</h5> <br/>
+              EMAIL : <h5>{user.email}</h5> <br/>
+              MOBILE NO : <h5>{user.mobile_no}</h5> <br/>
               </Col>
 
               <Col>

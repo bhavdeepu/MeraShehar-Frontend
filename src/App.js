@@ -3,6 +3,7 @@ import Home from './components/home';
 import Login from './components/login';
 import SignUp from './components/sign-up';
 import Profile from './components/user-info';
+import Cart from './components/cart';
 
 import Admincp from './components/admin/admincp';
 
@@ -39,6 +40,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route path="/profile" component={Profile} />
+        <Route path="/cart" component={Cart} />
         
         <Route path="/admin" component={Admincp} />
         <Route path="/admin/products/" component={ProductTab} />

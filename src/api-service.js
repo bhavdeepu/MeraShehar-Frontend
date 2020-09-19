@@ -34,6 +34,47 @@ export class APIALL{
 			)
 		}
 
+	static addToCart(token, body){
+		return API.post(`/cart/add/`,body,
+			{ 
+				headers: {
+					        'Content-Type':'application/json',
+					        'Authorization':`Token ${token}`
+					      }
+			}
+			)
+		}
+
+	static removeFromCart(token, body){
+		return API.post(`/cart/remove/`,body,
+			{ 
+				headers: {
+					        'Content-Type':'application/json',
+					        'Authorization':`Token ${token}`
+					      }
+			}
+			)
+		}
+		
+	static cartFetch(token){
+
+		return API.get(`cart/products`,{
+				      headers: {
+				        'Content-Type':'application/json',
+				        'Authorization':`Token ${token}`
+				      }
+				    })
+				}
+
+	static inCart(token,id){
+
+		return API.get(`/products/${id}/in-cart`,{
+				      headers: {
+				        'Content-Type':'application/json',
+				        'Authorization':`Token ${token}`
+				      }
+				    })
+				}
 		// return fetch(`http://52.66.199.133/auth/`,{
 		// 		      method: "POST",
 		// 		      headers: {
